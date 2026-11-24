@@ -1,0 +1,8 @@
+{
+  "subscriptionId": "YOUR_MVP_SUBSCRIPTION_ID",
+  "tenantId": "YOUR_TENANT_ID",
+  "resourceGroup": "rg-yakshaver-anywhere-dev",
+  "workspaceId": "YOUR_LOG_ANALYTICS_WORKSPACE_CUSTOMER_ID",
+  "workspaceResourceId": "/subscriptions/YOUR_MVP_SUBSCRIPTION_ID/resourceGroups/rg-yakshaver-anywhere-dev/providers/Microsoft.OperationalInsights/workspaces/law-yakshaver-anywhere-dev",
+  "insightsResourceId": "/subscriptions/YOUR_MVP_SUBSCRIPTION_ID/resourceGroups/rg-yakshaver-anywhere-dev/providers/Microsoft.Insights/components/appi-yakshaver-anywhere-dev"
+}

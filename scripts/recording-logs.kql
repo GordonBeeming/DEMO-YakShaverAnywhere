@@ -1,0 +1,6 @@
+let recordingId = "REPLACE_WITH_RECORDING_ID_FROM_ISSUE";
+union isfuzzy=true withsource=TelemetryTable AppEvents, AppTraces, AppExceptions, AppDependencies, AppRequests, AppPageViews, AppBrowserTimings
+| where TimeGenerated > ago(7d)
+| where tostring(Properties["recordingId"]) == recordingId
+| project TimeGenerated, TelemetryTable, Name=column_ifexists("Name", ""), Message=column_ifexists("Message", ""), Properties
+| order by TimeGenerated asc
