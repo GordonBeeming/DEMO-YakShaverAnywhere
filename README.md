@@ -44,7 +44,7 @@ Open **Settings** in the header to access the application controls.
 
 | Setting | Behavior |
 | --- | --- |
-| Extra context | Attaches contact state to an active YakShaver recording and tags subsequent telemetry with its recording ID. Starts off and can change during capture. |
+| Extra context | Attaches contact state to an active YakShaver recording and tags subsequent telemetry with its recording ID. Starts on and can change during capture. Your choice is preserved across reloads in the same tab. |
 | Custom record button | Replaces the floating widget launcher with the header's **Record with YakShaver** button. Changing this setting reloads the page; choose it before recording. |
 | Trigger save bug | Enables the diagnostic save failure described below. Starts on and changes immediately without reloading. |
 
@@ -58,7 +58,7 @@ With **Trigger save bug** enabled, normal Save rejects full names beginning with
 
 Delete uses a separate path and succeeds while adding the prefix. Saving that contact afterwards reproduces the failure. Disable **Trigger save bug** to save prefixed names normally. Other field validation remains active.
 
-Settings return to their initial state on reload, except the recording mode selected by `?recorder=custom`.
+Extra context is remembered for the current browser tab, including reloads when changing recording controls. Trigger save bug returns to its initial state on reload. The recording mode is selected by `?recorder=custom`.
 
 ## Telemetry and recording context
 

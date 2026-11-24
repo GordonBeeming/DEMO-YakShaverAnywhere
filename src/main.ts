@@ -5,6 +5,7 @@ import { telemetryConfigured, track, trace, flush, reportException } from './tel
 import yakIconUrl from '../assets/yak-icon.svg';
 
 const customRecordMode = new URLSearchParams(location.search).get('recorder') === 'custom';
+const contextPreferenceKey = 'phonebook.extra-context';
 let triggerSaveBug = true;
 
 const app = document.querySelector<HTMLDivElement>('#app');
@@ -27,7 +28,18 @@ const search = element('#search', HTMLInputElement);
 const form = element('#contact-form', HTMLFormElement);
 const contextToggle = element('#extra-context', HTMLInputElement);
 contextToggle.autocomplete = 'off';
-contextToggle.checked = false;
+let initialExtraContext = true;
+try {
+  initialExtraContext = sessionStorage.getItem(contextPreferenceKey) !== 'off';
+} catch (error) {
+  trace('Could not read extra context preference', { message: error instanceof Error ? error.message : String(error) });
+}
+function renderContextSetting(enabled: boolean) {
+  contextToggle.checked = enabled;
+  element('#context-state', HTMLElement).textContent = enabled ? 'On' : 'Off';
+  element('#context-hint', HTMLParagraphElement).textContent = enabled ? 'Contact details and saves attach while recording.' : 'Record normally, then switch on more detail.';
+}
+renderContextSetting(initialExtraContext);
 const headerActions = document.createElement('div');
 headerActions.className = 'header-actions';
 const recordButton = document.createElement('button');
@@ -110,6 +122,7 @@ const context = setupYakShaver(snapshot, message => { recordingStatus.textConten
     recordModeControl.title = '';
   },
 });
+context.setEnabled(initialExtraContext);
 
 function log(name: string, properties: Record<string, string | number | boolean | null> = {}) {
   track(name, properties);
@@ -167,8 +180,12 @@ search.addEventListener('input', () => {
 });
 contextToggle.addEventListener('change', () => {
   context.setEnabled(contextToggle.checked);
-  element('#context-state', HTMLElement).textContent = contextToggle.checked ? 'On' : 'Off';
-  element('#context-hint', HTMLParagraphElement).textContent = contextToggle.checked ? 'Contact details and saves attach while recording.' : 'Record normally, then switch on more detail.';
+  renderContextSetting(contextToggle.checked);
+  try {
+    sessionStorage.setItem(contextPreferenceKey, contextToggle.checked ? 'on' : 'off');
+  } catch (error) {
+    trace('Could not save extra context preference', { message: error instanceof Error ? error.message : String(error) });
+  }
 });
 form.addEventListener('input', () => { saveStatus.textContent = 'Unsaved changes'; saveStatus.classList.remove('error'); });
 form.addEventListener('change', event => {
