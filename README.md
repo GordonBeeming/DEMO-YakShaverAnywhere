@@ -111,3 +111,9 @@ npm run preview   # Serve the production build locally
 ```
 
 Application code lives in `src/`, Azure templates in `infra/`, and report tooling in `scripts/`. The repository's `yakshaver-report` skill provides the issue-report workflow for compatible coding agents.
+
+## Watch the walkthrough
+
+Want to see how this demo fits together? [Watch the video on YouTube](https://youtu.be/SIekPasYGbM) for a walkthrough of adding YakShaver Anywhere to the app, attaching structured context to a recording, and using its `recordingId` to find the matching Azure Application Insights logs and bring them back into the GitHub issue.
+
+[![Watch the YakShaver Anywhere walkthrough on YouTube: bug reports with structured context and Azure Application Insights logs](assets/video-walkthrough.png)](https://youtu.be/SIekPasYGbM)
