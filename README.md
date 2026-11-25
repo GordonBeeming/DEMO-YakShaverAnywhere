@@ -117,3 +117,5 @@ Application code lives in `src/`, Azure templates in `infra/`, and report toolin
 Want to see how this demo fits together? [Watch the video on YouTube](https://youtu.be/SIekPasYGbM) for a walkthrough of adding YakShaver Anywhere to the app, attaching structured context to a recording, and using its `recordingId` to find the matching Azure Application Insights logs and bring them back into the GitHub issue.
 
 [![Watch the YakShaver Anywhere walkthrough on YouTube: bug reports with structured context and Azure Application Insights logs](assets/video-walkthrough.png)](https://youtu.be/SIekPasYGbM)
+
+**Video: Bug Reports with Context: YakShaver Anywhere + Azure App Insights (10 min)**
